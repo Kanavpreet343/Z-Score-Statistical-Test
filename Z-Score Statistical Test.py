@@ -59,6 +59,27 @@ plt.xlabel("$z$-scores")
 plt.ylabel("count")
 plt.show()
 
+# First, plot the histogram as you already do
+counts, bins, patches = plt.hist(simulated_zscores, bins=100, alpha=0.7, color='grey')
+plt.xlabel("$z$-scores")
+plt.ylabel("Count")
+plt.title("Distribution of simulated $z$-scores - Null Model")
+
+# Overlay observed z-score with SD
+y_position = max(counts) * 0.8  
+plt.errorbar(
+    observed_zscore,      
+    y_position,           
+    xerr=observed_stdev,  
+    fmt='o',              
+    capsize=5,
+    color='blue',
+    label='Observed z-score ± SD'
+)
+
+plt.legend()
+plt.show()
+
 print('\nWHAT THE MODEL REPRESENTS:')
 print('This is a Null Model: this is what the data should look like if nothing special is happening; if the Null Hypothesis is True')
 print('The expectancy is 0 because in long run, we expect nothing to happen\n')
